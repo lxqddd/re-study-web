@@ -1,0 +1,51 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 夜殇
+ * @Date: 2020-07-19 16:49:13
+ * @LastEditors: 夜殇
+ * @LastEditTime: 2020-07-19 17:00:26
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>拖动物体移动</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      draggable="true"
+      class="drag"
+      style="
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        left: 0;
+        top: 0px;
+        background-color: aqua;
+      "
+    ></div>
+    <script>
+      const oDragDiv = document.querySelector('.drag')
+      let oDragDivBeginX = null
+      let oDragDivBeginY = null
+      oDragDiv.addEventListener('dragstart', e => {
+        oDragDivBeginX = e.clientX
+        oDragDivBeginY = e.clientY
+      })
+      oDragDiv.addEventListener('dragend', e => {
+        let oDragDivX = e.clientX - oDragDivBeginX
+        let oDragDivY = e.clientY - oDragDivBeginY
+        oDragDiv.style.left = oDragDivX + oDragDiv.offsetLeft + 'px'
+        oDragDiv.style.top = oDragDivY + oDragDiv.offsetTop + 'px'
+      })
+    </script>
+  </body>
+</html>
