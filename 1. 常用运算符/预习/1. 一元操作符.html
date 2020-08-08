@@ -1,0 +1,57 @@
+<!--
+ * @Descripttion: 一元操作符
+ * @version: 
+ * @Author: 夜殇
+ * @Date: 2020-08-09 07:16:11
+ * @LastEditors: 夜殇
+ * @LastEditTime: 2020-08-09 07:44:39
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>一元操作符</title>
+  </head>
+  <body>
+    <script>
+      // 递增操作符 ++
+      var a = 18
+      sum1 = ++a + 3
+      console.log(sum1) // 22 一元操作符放在数字之前，会先执行递增，之后在执行加法运算
+      sum2 = a++ + 3
+      console.log(sum2)
+      // 22 之所以不是23，是因为在上一步的时候a的值变成了19，一元操作符放在数字之后，
+      // 该操作符会在加法运算之后再执行，
+      console.log(a) // 这个时候a的值才是20
+
+      // 递减操作符 --
+      // 递减与递增类似，递减是减一，递增是加一
+
+      // 一元加和减操作符 + -
+      // 执行递增或递减操作符之前，该运算符会先判断要运算的内容是不是Number类型
+      var s1 = '0.1'
+      var s2 = '1.1'
+      var s3 = 'z'
+      var s4 = false
+      var s5 = 1.1
+      var o = {
+        valueOf: function () {
+          return -1
+        }
+      }
+      s1 = +s1
+      s2 = +s2
+      s3 = +s3
+      s4 = +s4
+      s5 = +s5
+      o = +o
+      console.log(s1) // 0.1 对非数值使用一元操作符的时候会先对该值进行类似于Number()类型转换函数的数值转换
+      console.log(s2) // 1.1
+      console.log(s3) // NaN 如果操作的是字符串，就会被按照一组特殊的规则进行解析
+      console.log(s4) // 0 如果操作的是布尔值，就被转为 0 或 1
+      console.log(s5) // 1.1
+      console.log(o) // -1 如果操作的是对象，就会是先调用他们的toString方法或者是valueOf()方法
+    </script>
+  </body>
+</html>
