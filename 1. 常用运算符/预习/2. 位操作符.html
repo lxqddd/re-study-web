@@ -1,0 +1,68 @@
+<!--
+ * @Descripttion: 位操作符
+ * @version: 
+ * @Author: 夜殇
+ * @Date: 2020-08-09 10:09:46
+ * @LastEditors: 夜殇
+ * @LastEditTime: 2020-08-09 11:00:58
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>操作符</title>
+  </head>
+  <body>
+    <script>
+      // 在js中，所有的数值都是以64位的格式存储的
+      // 但是位操作符并不直接操作64位的值，而是先将64位的值转化位32位的整数，然后执行操作
+      // 最后再将结果转为64位
+
+      /**
+        - 对于有符号的整数，32位中的前31位用于表示整数的值，第32位用于表示数值的符号
+          - 正数以纯二进制存储，31位中的每一位都表示2的幂
+          - 负数同样是二进制码存储，但是使用的格式是二进制补码
+     */
+
+      // 按位非 ~，执行按位非的结果就是返回数值的补码
+      var num1 = 25
+      console.log(~num1)
+      // 上边的执行结果跟下边的一样
+      var num2 = -num1 - 1
+      console.log(num2) // 但是因为按位非操作的是在数值表示的最底层的操作，因此速度更快
+
+      // 按位与（AND）&
+      // 从本质上讲，按位与就是将两个数值的每一位对齐，两位相同都为1，则返回1，其他都返回0
+      var result = 25 & 3
+      // 25:     11001
+      // 3:      00011
+      // result: 00001
+      console.log(result) // 1
+
+      // 按位或（OR）|
+      // 按位或是将两个数值的每一位对齐，有一位是1就返回1，否则返回0
+      var result2 = 25 | 3
+      // 25:     11001
+      // 3:      00011
+      // result: 11011
+      console.log(result2) // 27
+
+      // 按位异或（XOR）^
+      // 按位异或是将两个数值的每一位对齐，相同返回0，不同返回1
+      var result3 = 25 ^ 3
+      // 25:     11001
+      // 3:      00011
+      // result: 11010
+      console.log(result3) // 26
+
+      // 左移 <<
+      // 将数值的所有位向左移动指定的位数
+      var move = 3 << 2
+      // 3:   011
+      // 向左移动2两位
+      // 1100
+      console.log(move) // 12
+    </script>
+  </body>
+</html>
