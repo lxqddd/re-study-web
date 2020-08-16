@@ -1,0 +1,24 @@
+<!--
+ * @Descripttion: 普通函数可以使用arguments的方式获取函数的不定参数，箭头函数要用扩展运算符
+ * @version: 
+ * @Author: 夜殇
+ * @Date: 2020-08-16 23:40:32
+ * @LastEditors: 夜殇
+ * @LastEditTime: 2020-08-16 23:44:21
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>箭头函数的不定参</title>
+  </head>
+  <body>
+    <script>
+      const fn = (...args) => {
+        console.log(args)
+      }
+      fn(1, 2, 'a') // [1, 2, 'a']
+    </script>
+  </body>
+</html>
