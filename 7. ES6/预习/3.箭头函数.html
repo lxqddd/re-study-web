@@ -4,7 +4,7 @@
  * @Author: 夜殇
  * @Date: 2020-08-16 23:40:32
  * @LastEditors: 夜殇
- * @LastEditTime: 2020-08-16 23:47:57
+ * @LastEditTime: 2020-08-16 23:57:00
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +24,21 @@
 
       // 箭头函数的this问题
       // 箭头函数本身没有this，调用箭头函数this的时候指向的是其声明时作用域的this
+      let fn2
+      const fn3 = () => {
+        console.log(this)
+        fn2 = () => {
+          console.log(this)
+        }
+        fn2()
+      }
+      fn3() // 两个this都指向window
+
+      // 箭头函数的参数默认值问题
+      const fn4 = (a = 1, b = 2) => {
+        console.log(a, b)
+      }
+      fn4(3)
     </script>
   </body>
 </html>
