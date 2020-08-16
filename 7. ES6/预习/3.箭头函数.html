@@ -1,10 +1,10 @@
 <!--
- * @Descripttion: 普通函数可以使用arguments的方式获取函数的不定参数，箭头函数要用扩展运算符
+ * @Descripttion: 箭头函数
  * @version: 
  * @Author: 夜殇
  * @Date: 2020-08-16 23:40:32
  * @LastEditors: 夜殇
- * @LastEditTime: 2020-08-16 23:44:21
+ * @LastEditTime: 2020-08-16 23:47:57
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -15,10 +15,15 @@
   </head>
   <body>
     <script>
+      // 箭头函数的不定参
+      // 普通函数可以使用arguments的方式获取函数的不定参数，箭头函数要用扩展运算符
       const fn = (...args) => {
         console.log(args)
       }
       fn(1, 2, 'a') // [1, 2, 'a']
+
+      // 箭头函数的this问题
+      // 箭头函数本身没有this，调用箭头函数this的时候指向的是其声明时作用域的this
     </script>
   </body>
 </html>
