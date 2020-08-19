@@ -136,19 +136,19 @@
         }
         // 作业：完成添加数据；id 不要重复；
 
-        // 暗号：奥里给
+        // 暗号：'奥里给' || '奥利给' || '奥力给'
+        // 不知道哪个是对的,就写了三个
         // 添加数据
         document.querySelector('#add').onclick = function () {
           // 添加一条新的数据
-          let content = document.querySelector('#newInfo').value
+          let content = document.querySelector('#newInfo')
           data.push({
             id: data[data.length - 1].id + 1,
-            title: content,
+            title: content.value,
             checked: false,
             collect: false
           })
-          content = ''
-          console.log(data)
+          content.value = ''
           renderData(data)
         }
       }
