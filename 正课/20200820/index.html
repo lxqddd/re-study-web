@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//1.面向过程   2. 面向对象；思维方式。
+// 面向对象  对象--》属性及方法 ---》抽离类 （抽象）---》逻辑关系--->类的抽象-- 继承 --》基类（父类）；
+
+// 类 --》对象；
+
+// ES5 类；
+// function Person(name){
+//     this.name = name;
+//     this.age = 20;
+//     this.fn = function(){
+//         console.log("fn");
+//     }
+// }
+// Person.prototype.hobby = function(){
+//     console.log("喜欢篮球");
+// }
+
+// let zhangsan = new Person("张三");
+// console.log( zhangsan.name  ) 
+// zhangsan.fn();
+
+// ES6 语法糖； 语义化更强；
+// class Person{
+//     constructor(name){
+//         this.name = name;
+//         this.age = 20;
+//         this.fn = function(){
+//             console.log("fn");
+//         }
+//     }
+//     hobby(){
+//         console.log("喜欢篮球");
+//     }
+// }
+
+// console.log(typeof Person);
+
+// let zhangsan = new Person("张三");
+// console.log( zhangsan  ) 
+// zhangsan.fn();
+
+
+// 共有私有ES5
+// function Person(name){
+//     let _myname = "狗蛋";
+//     this.name = name;
+//     this.age = 20;
+// }
+
+// let zhangsan = new Person("张三");
+
+// console.log( zhangsan._myname );
+
+// ES6 共有私有 ES2020;
+
+// class Person{
+//     // 私有属性  _myname;
+//     #myname = "狗蛋";
+//     constructor(name){
+//         this.name = name;
+//         this.age = 20;
+//     }
+//     getName(){
+//         console.log(this.#myname);
+//     }
+// }
+// let zhangsan = new Person("张三");
+// // console.log( zhangsan.#myname );
+// zhangsan.getName();
+
+
+//ES5 静态属性；
+// function Person(name){
+//     this.name = name;
+//     this.age = 20;
+// }
+// // 静态属性；属于类的；不是属于实例对象的；
+// Person.num = 10;
+// console.log(Person.num);
+// let zhangsan = new Person("张三");
+// console.log(zhangsan.num);
+// ES6 静态属性；
+// class Person{
+//     static num = 10;
+//     constructor(name){
+//         this.name = name;
+//         this.age = 20;
+//     }
+// }
+// console.log(Person.num);
+// let zhangsan = new Person("张三");
+// console.log(zhangsan.num);
+
+// 比如 ： 想让类只去实例化一次； （单例模式）；
+// let instance = null;
+
+// class Person{
+//     static instance = null;
+//     constructor(name){
+//         if(!Person.instance){
+//             // 记录实例化对象；
+//             console.log("第一次实例化");
+//             Person.instance = this;
+//         }else{
+//             return Person.instance;
+//         }
+//         this.name = name;
+//     }
+// }
+// // Person.instance = "111";
+// // console.log(Person.instance);
+// let zhangsan  = new Person("张三");
+// let lisi  = new Person("李四");
+// console.log(zhangsan,lisi);
+
+// 继承；ES5;
+// function Dad(name){
+//     this.name = name;
+//     this.age  = 50;
+// }
+
+// function Son(name){
+//     Dad.call(this,name)
+// }
+
+// let zhangsan  = new Son("张三");
+// console.log(zhangsan.name);
+
+// ES6 继承；
+// class Dad{
+//     // 预定义函数；
+//     static num = 10;
+//     constructor(name,age){
+//         this.name = name;
+//         this.age  = age;
+//     }
+//     hobby(){
+//         console.log("hobby");
+//     }
+// }
+// class Son extends Dad{
+//     constructor(name,age){
+//         super(name,age);
+//         this.height = "178cm";
+//     }
+// }
+// let zhangsan  = new Son("张三",30);
+// // console.log(zhangsan.name);
+// zhangsan.hobby();
+// console.log(Son.num);
+// console.log(zhangsan.age);
+
+
+// Promise.all  Promise.race Promise.resolve
+
+
+// ES2020; 合并空运算符；
+// function test(name ,age){
+//     // 参数默认值；
+//     // name = name || "默认名称";
+//     // age = age || 25;
+//     name = name ?? "默认名称";
+//     age = age ?? 25;
+//     console.log(name,age);
+// }
+// test("",0);
+
+
+// 可选链式操作
+// let obj = {
+//     name:{
+//         age:20
+//     }
+// };
+// console.log(obj?.name?.age);
+
+
+
+
+
+</script>
+</html>
