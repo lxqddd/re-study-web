@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <span></span>
+    <p></p>
+    <img /> -->
+    <!-- <img is="my-img" /> -->
+    <my-com></my-com>
+</body>
+<script>
+// 继承html的组件；
+// class MyImg extends HTMLImageElement{
+//     constructor(){
+//         super();
+//         console.log(this);
+//         setTimeout(() => {
+//             this.src = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598375475629&di=b2154e85cfb0050f379db68bf16b9b71&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg"
+//         }, 1000);
+//     }
+// }
+// customElements.define("my-img",MyImg,{
+//     extends:"img"
+// })
+
+// 自定义组件；
+
+class MyCom extends HTMLElement{
+    constructor(){
+        super();
+        // console.log(this);
+        this.innerHTML =  "<button>按钮</button>";
+    }
+}
+customElements.define("my-com",MyCom);
+
+
+
+
+
+
+</script>
+</html>
