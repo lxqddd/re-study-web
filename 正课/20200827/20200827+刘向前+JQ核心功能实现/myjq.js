@@ -32,7 +32,6 @@ class Jq {
       this.length = eles.length
     } else {
       // 对象；
-      console.log('原生dom对象')
       // 对象 有没有length；
       if (typeof arg.length === 'undefined') {
         // 一个对象；
@@ -40,7 +39,6 @@ class Jq {
         this.length = 1
       } else {
         // 多个对象 类数组；
-        console.log(arg)
         for (let i = 0; i < arg.length; i++) {
           this[i] = arg[i]
         }
@@ -130,7 +128,32 @@ class Jq {
   // 暗号： 充电器
   animate(obj) {
     // animate动画
-    console.log(this)
+    const styleArr = Object.keys(obj)
+    const oldStyleObj = {}
+    styleArr.forEach(item => {
+      oldStyleObj[item] = parseFloat(this.getStyle($(this)[0], item))
+    })
+    const changeStyle = {}
+    for (const key in obj) {
+      changeStyle[key] = parseFloat(obj[key]) - oldStyleObj[key]
+    }
+    const rateObj = {}
+    const times = 40
+    for (const key in changeStyle) {
+      rateObj[key] = parseFloat((changeStyle[key] / times).toFixed(1))
+    }
+    let timer = setInterval(() => {
+      for (const key in oldStyleObj) {
+        oldStyleObj[key] += rateObj[key]
+        if (oldStyleObj[key] >= parseFloat(obj[key])) {
+          clearInterval(timer)
+          for (const item in oldStyleObj) {
+            oldStyleObj[item] = parseFloat(obj[item])
+          }
+        }
+      }
+      $(this).css(oldStyleObj)
+    }, times)
   }
 }
 
@@ -164,4 +187,4 @@ $.cssNumber = {
 $.cssHooks = {}
 // 作业 ：在老师代码基础上 实现 jq、 animate方法,具体内部实现方法不限；
 // 效果 通过调用 $(".box").animate({width:"200px"});实现动画；
-$('.box').animate()
+// $('.box').animate()

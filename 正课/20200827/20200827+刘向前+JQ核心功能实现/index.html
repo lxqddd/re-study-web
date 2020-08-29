@@ -4,7 +4,7 @@
  * @Author: 刘向前
  * @Date: 2020-08-28 09:19:28
  * @LastEditors: 刘向前
- * @LastEditTime: 2020-08-28 09:31:27
+ * @LastEditTime: 2020-08-29 11:07:58
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +26,10 @@
     <div class="box">111</div>
     <div class="box">222</div>
     <button class="btn">点击</button>
+    <br />
+    <br />
+    <div class="animate" style="background-color: blue; width: 100px; height: 100px">动画</div>
+    <br />
     <button class="start">开始动画</button>
     <button class="reset">重置</button>
   </body>
@@ -91,8 +95,11 @@
     // "wh"  可以设置 宽度及高度；
     // console.log( $("div").css("wh"));
     // $("div").css("wh","400px")
-    $('.btn').click(function () {
-      $('div').animate({ width: '200px' })
+    $('.start').click(function () {
+      $('.animate').animate({ width: '200px', height: '300px' })
+    })
+    $('.reset').click(() => {
+      $('.animate').animate({ width: '100px', height: '100px' })
     })
   </script>
 </html>
