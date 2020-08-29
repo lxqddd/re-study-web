@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 同步 --异步；--》阻塞 非阻塞；
+    // 同步阻塞  --- 异步非阻塞；
+    // setTimeout(() => {
+    //     console.log(0);
+    // }, 1000);
+    // console.log(111);
+    // console.log(222);
+    // // alert(1);
+    // console.log(333);
+
+    //1. 通过回调 解决异步；
+    // function test(cb){
+    //     setTimeout(() => {
+    //         console.log("test");
+    // console.log(333);
+    //         cb && cb();
+    //     }, 1000);
+    // }
+
+
+    // // test();
+    // // console.log("2222");
+    // test(function(){
+    //     console.log("22222");
+    // })
+
+    // 2.自定义事件；
+    // let myeventObj = new EventTarget();
+
+    // function test(){
+    //     setTimeout(() => {
+    //         console.log("test");
+    //         myeventObj.dispatchEvent(new CustomEvent("myevent"));
+    //     }, 1000);
+    // }
+    // test();
+    // myeventObj.addEventListener("myevent",function(){
+    //     console.log(2222);
+    // })
+    // myeventObj.addEventListener("myevent",()=>{
+    //     console.log(333);
+    // })
+
+    // 3. ES6 promise 解决 ；
+    // 4.async 及 await；
+
+
+
+</script>
+</html>

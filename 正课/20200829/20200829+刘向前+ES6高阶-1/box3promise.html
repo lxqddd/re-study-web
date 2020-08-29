@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+<script>
+
+    function move(ele, direction, target) {
+        return new Promise(resolve => {
+            function fn(){
+                let start = parseInt(ele.style[direction]) || 0;
+            // console.log(start) ;
+            let speed = Math.abs(target - start) / (target - start) * 5;
+            start += speed;
+            // console.log(start);
+            setTimeout(() => {
+                if (start === target) {
+                    // console.log("运动完成");
+                    resolve("运动完成");
+                } else {
+                    ele.style[direction] = start + "px";
+                    // move(ele, direction, target, cb);
+                    fn();
+                }
+
+            }, 20);
+            }
+            fn();
+
+        })
+
+    }
+    let box = document.querySelector(".box");
+    move(box,"left",300).then(res=>{
+        console.log("1运行完成");
+        // move(box,"top",300).then(res=>{
+        //     console.log("运动完成");
+        // })
+        return move(box,"top",300);
+    }).then(res=>{
+        console.log("2运行完成");
+        return move(box,"left",0);
+    }).then(res=>{
+        console.log("3运行完成");
+        return move(box,"top",0);
+    }).then(res=>{
+        console.log("4运动完成");
+    }).catch(err=>{
+        console.log(err);
+    })
+    // move(box,"left",300)
+    // move(box,"top",300)
+    // 回调处理异步； 回调地狱；
+    // move(box,"left",300,function(){
+    //     console.log("运动完成1");
+    //     move(box,"top",300,function(){
+    //         console.log("运动完成2");
+    //         move(box,"left",0,function(){
+    //             console.log("运动完成3");
+    //             move(box,"top",0,function(){
+    //                 console.log("运动完成");
+    //             })
+    //         })
+    //     })
+    // })
+
+
+
+</script>
+
+</html>

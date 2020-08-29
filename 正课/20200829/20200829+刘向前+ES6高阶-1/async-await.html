@@ -1,0 +1,66 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 刘向前
+ * @Date: 2020-08-29 23:01:23
+ * @LastEditors: 刘向前
+ * @LastEditTime: 2020-08-29 23:13:37
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box"></div>
+  </body>
+  <script>
+    // 作业
+    // 通过async、await 改造 方块运动，达到 课上相同运动的效果
+
+    // 暗号：扇子
+    async function move(ele, direction, target) {
+      return new Promise(resolve => {
+        function fn() {
+          let start = parseInt(ele.style[direction]) || 0
+          // console.log(start) ;
+          let speed = (Math.abs(target - start) / (target - start)) * 5
+          start += speed
+          // console.log(start);
+          setTimeout(() => {
+            if (start === target) {
+              // console.log("运动完成");
+              resolve('运动完成')
+            } else {
+              ele.style[direction] = start + 'px'
+              // move(ele, direction, target, cb);
+              fn()
+            }
+          }, 20)
+        }
+        fn()
+      })
+    }
+    let box = document.querySelector('.box')
+    async function asyncFn() {
+      await move(box, 'left', 300)
+      await move(box, 'top', 300)
+      await move(box, 'left', 0)
+      await move(box, 'top', 0)
+    }
+    asyncFn()
+  </script>
+</html>

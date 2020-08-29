@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//  三种状态：resolved(fulfilled)、rejected、pending
+// then的2个参数：onResoleved / onRejected;
+// then：三种返还值； 
+
+//   let p1 = new Promise((resolve,reject)=>{
+//     resolve("value11");
+//     // reject("err");
+//   })
+//   console.log(p1);
+// then的2个参数：onResoleved / onRejected;
+// p1.then((res)=>{
+//     // onResoleved成功
+//     console.log("成功",res);
+// },err=>{
+//     // onRejected失败
+//     console.log("失败",err);
+// })
+
+// then：三种返还值； 1.没有任何返还  会自动返还promise对象； 2.返还普通值，会包装成promise对象promisevalue值是 返还的值；3.返还promise  就会 直接把promise返还；
+// let res =  p1.then(res=>{
+//     return new Promise(resolve=>{
+//         resolve("success");
+//     })
+// })
+// // res.then(res=>{
+// //     console.log(res);
+// // })
+// console.log(res);
+
+// let p1 = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         // resolve("111")
+//         reject("err");
+//     },2000)
+// })
+
+// let p2 = new Promise((res,rej)=>{
+//     setTimeout(()=>{
+//         res("2222")
+//     },1000)
+// })
+// 静态方法；所有promise必须是 resolved
+// Promise.all([p1,p2]).then(res=>{
+//     console.log(res);
+// })
+
+// race  是谁执行快获取谁的结果；
+// Promise.race([p1,p2]).then(res=>{
+//     console.log(res);
+// })
+// let res =  p1.then(res=>{
+//     console.log(res);
+// },err=>{
+//     console.log(err);
+// }).finally(()=>{
+//     console.log("完成了");
+// })
+// console.log(res);
+
+
+
+
+
+
+  
+
+
+
+
+</script>
+</html>
