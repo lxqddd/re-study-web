@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    setTimeout(()=>{
+        console.log(123);
+    })
+    // 微任务： promise  、MutationObserver、process.nextTick（nodejs）;
+    let ob = new MutationObserver(function(){
+        console.log("回调执行了..,微任务");
+    })
+    ob.observe(document.body,{
+        attributes:true
+    })
+    document.body.setAttribute("kkb","123")
+
+
+
+
+</script>
+</html>
