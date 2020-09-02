@@ -138,6 +138,11 @@ export default class KPromise {
     }
     finally(cb){
         // cb(); 错误的；
+        return this.then((data) => {
+            return this.resolve(cb).then(() => data)
+        }, (err) => {
+            return this.resolve(cb).then(() => throw err)
+        })
     }
 
 }
