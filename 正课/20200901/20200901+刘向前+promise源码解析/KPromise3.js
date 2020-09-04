@@ -139,16 +139,7 @@ export default class KPromise {
 
   // 小猫
   finally(cb) {
-    return this.then(
-      data => {
-        return new KPromise(cb).then(() => data)
-      },
-      err => {
-        return new KPromise(cb).then(() => {
-          throw err
-        })
-      }
-    )
+    return this.then(cb, cb)
   }
 }
 // KPromise.all
