@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <input v-model="message" />  -->
+        <div v-html="message"></div>
+    </div>
+</body>
+<script>
+// 1. 数据驱动思想，如何把数据渲染(编译)到视图？
+// 2. 如何实现数据响应式？
+// 3. 如何实现双向绑定？
+let vm = new Vue({
+    el:"#app",
+    data:{
+        message:"<h1>数据</h1>"
+    }
+})
+console.log(vm);
+// setTimeout(() => {
+//     vm._data.message = "修改了";
+// }, 1000);
+// 作业  ：在老师的代码基础上实现一个v-html方法；
+
+
+</script>
+</html>

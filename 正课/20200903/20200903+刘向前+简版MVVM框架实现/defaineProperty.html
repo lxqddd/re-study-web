@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let obj = {
+        name:"张三"
+    }
+    // console.log(obj);
+    // obj.name = "李四";
+    // 拦截前
+    // console.log(obj)
+    Object.defineProperty(obj,"name",{
+        configurable:true,
+        enumerable:true,
+        get(){
+            console.log("get...");
+            return "张三";
+        },
+        set(newValue){
+            console.log("set",newValue);
+        }
+    })
+    //拦截后
+    console.log(obj);
+    // 获取get
+    // obj.name
+    // 设置set
+    // obj.name = "李四";
+
+    // delete obj.name;
+    // console.log(obj);
+    // for(let key in obj){
+    //     console.log(key);
+    // }
+
+
+
+
+</script>
+</html>

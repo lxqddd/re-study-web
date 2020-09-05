@@ -1,0 +1,52 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 刘向前
+ * @Date: 2020-09-04 21:10:46
+ * @LastEditors: 刘向前
+ * @LastEditTime: 2020-09-04 23:18:44
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="./myvue2.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      {{message}}
+      <!-- 元素节点 -->
+      <!-- <input v-model="message" class="myc" /> -->
+      <div v-html="message"></div>
+      <!-- <div>
+            <div>
+                {{message}}
+            </div>
+        </div> -->
+      <!-- <div><div>{{message}}</div></div> -->
+    </div>
+  </body>
+  <script>
+    // 1.初次编译 --> 多层编译（递归）
+    // 2.如何实现数据响应式？ --->数据劫持defineProperty--->触发二次编译 自定义事件 (有关联) --->优化-->发布订阅；
+    // 3 实现双向绑定
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        message: `
+                    <h1>hello world</h1>
+                `
+        // mydata:"我的数据"
+      }
+    })
+    // setTimeout(() => {
+    //     console.log("settimeout")
+    //     // 设置；
+    //     vm._data.message = "修改了";
+    //     // console.log(vm._data);
+    // }, 1000);
+  </script>
+</html>

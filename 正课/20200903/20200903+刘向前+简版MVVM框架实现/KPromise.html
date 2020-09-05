@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>自己的Promise</h1>
+</body>
+<script type="module">
+// [1,2,3,4];
+import KPromise from './KPromise3.js';
+
+// setTimeout(()=>{
+//     console.log(2222);
+// },0)
+// let p = new KPromise((resolve,reject)=>{
+//     // setTimeout(function(){
+//         resolve("success");
+//     // },1000)
+//     // reject("err");
+// })
+// console.log(p);
+// 一个then
+// p.then(res=>{
+//     console.log(res);
+// },err=>{
+//     console.log(err);
+// })
+// 1.多个then  （不是链式操作）的问题; 数组保存，循环执行；
+// 注册函数；
+// let p2 =  p.then(res=>{
+//     console.log("111",res);
+//     // 普通值；
+//     // return "返还的值";
+//     return new KPromise(resolve=>{
+//         resolve("返还的promise对象");
+//     })
+// })
+// p.then(res=>{
+//     console.log("222",res);
+// })
+
+//2.同步问题---》先执行，后注册了；
+// 改成先注册 后调用；  settimeout;
+
+// 3.微任务 宏任务问题；MutaionObserver模拟微任务；
+
+// 4.then链式调用；
+
+// p2.then(res=>{
+//     console.log("??",res);
+// })
+
+
+// 5、Promise里的方法；
+// Promise.all 、Promise.race、Promise.resolve 、Promise.reject;
+// let p =     KPromise.reject("err..");
+// p.then(res=>{
+//     console.log(res);
+// },err=>{
+//     console.log(err)
+// })
+
+// let p1 = new KPromise((reslove,reject)=>{
+//     setTimeout(()=>{
+//         reslove(111);
+//     },2000)
+// })
+// let p2 = new KPromise((reslove,reject)=>{
+//     setTimeout(()=>{
+//         reslove(2222);
+//     },1000)
+// })
+
+// // KPromise.all([p1,p2]).then(res=>{
+// //     console.log(res);
+// // })
+// KPromise.race([p1,p2]).then(res=>{
+//     console.log(res);
+// })
+
+
+// 作业
+let p1 = new  KPromise((reslove,reject)=>{
+    // setTimeout(()=>{
+        reslove(111);
+        // reject("err");
+    // },2000)
+})
+let p2 =  p1.then(res=>{
+    console.log(res);
+    return 222;
+})
+p2.then(res=>{
+    console.log("??", res);
+})
+
+// p1.then(res=>{
+//     console.log(res)
+// },err=>{
+//     console.log(err)
+// }).finally(()=>{
+//     console.log("执行完成了");
+// })
+
+</script>
+</html>
