@@ -83,20 +83,10 @@ class Vue {
           // 替换模板里的内容
           node.textContent = node.textContent.replace(reg, this._data[$1])
 
-          // 通过事件名称关联；key === $1(下标：“message”) oldValue值："数据";
-          // this.addEventListener($1,e=>{
-          //     // console.log("触发了事件..",e);
-          //     let newValue = e.detail;
-          //     let oldValue = this._data[$1];
-          //     let reg = new RegExp(oldValue,"g");
-          //     node.textContent = node.textContent.replace(reg,newValue);
-          // })
-
           // 触发watcher 回调；
           // 人为触发 get方法 收集watcher
           new Watcher(this._data, $1, newValue => {
             // console.log("执行了");
-            // let newValue = e.detail;
             let oldValue = this._data[$1]
             let reg = new RegExp(oldValue, 'g')
             node.textContent = node.textContent.replace(reg, newValue)
