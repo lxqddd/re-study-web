@@ -85,7 +85,6 @@ class Vue {
           // 人为触发 get方法 收集watcher
           new Watcher(this._data, $1, newValue => {
             // console.log("执行了");
-            // let newValue = e.detail;
             let oldValue = this._data[$1]
             let reg = new RegExp(oldValue, 'g')
             node.textContent = node.textContent.replace(reg, newValue)
