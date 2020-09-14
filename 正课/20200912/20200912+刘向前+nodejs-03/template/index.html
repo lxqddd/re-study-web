@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div id="main">
+
+    <ul class="items-list">
+        {% for item in items %}
+        <li class="panel">
+            <img src="/public/images/items/{{item.cover}}" alt="" class="cover">
+            <div class="name">{{item.name}}</div>
+            <div class="price">¥ {{(item.price/100).toFixed(2)}}</div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination-container">
+
+        <div class="pagination">
+            <a href="?page={{page-1}}" class="prev">上一页</a>
+            {% for i in range(0, pages) %}
+                {% if i+1 == page %}
+                <a class="current" href="?page={{i+1}}">{{i+1}}</a>
+                {% else %}
+                <a href="?page={{i+1}}">{{i+1}}</a>
+                {% endif %}
+            {% endfor %}
+            <a href="?page={{page+1}}" class="next">下一页</a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
