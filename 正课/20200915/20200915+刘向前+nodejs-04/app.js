@@ -2,9 +2,9 @@
  * @Descripttion:
  * @version:
  * @Author: 刘向前
- * @Date: 2020-09-14 20:59:10
+ * @Date: 2020-09-16 22:30:42
  * @LastEditors: 刘向前
- * @LastEditTime: 2020-09-15 21:44:09
+ * @LastEditTime: 2020-09-16 23:41:00
  */
 const Koa = require('koa')
 const staticCache = require('koa-static-cache')
@@ -17,7 +17,7 @@ const mysql = require('mysql2')
 const connection = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  password: '********',
+  password: '*********',
   database: 'kkb'
 })
 
@@ -50,25 +50,46 @@ app.use(
   })
 )
 
-// ================
-// 暗号：数据库
-// ================
-
-// 通过 router 对象来管理url与函数的对应关系
 const router = new KoaRouter()
 
-router.get('/register', async ctx => {
-  ctx.body = tpl.render('register.html')
+router.get('/', async ctx => {
+  ctx.body = tpl.render('addOver.html')
+})
+router.get('/addItem', async ctx => {
+  ctx.body = tpl.render('addItem.html')
 })
 
-router.post('/register', KoaBody(), async ctx => {
-  let { name, password } = ctx.request.body
-  if (!name || !password) {
-    return (ctx.body = '注册失败')
+// ==============
+// 暗号：上传
+// ==============
+const addItemKoaBodyOptions = {
+  multipart: true,
+  formidable: {
+    uploadDir: __dirname + '/attachments',
+    keepExtensions: true
+  }
+}
+router.post('/addItem', KoaBody(addItemKoaBodyOptions), async ctx => {
+  let { cover } = ctx.request.files
+  let type, size
+  if (cover) {
+    let path = cover.path.replace(/\\/g, '/')
+    let lastIndex = path.lastIndexOf('/')
+    filename = path.substring(lastIndex + 1)
+    type = cover.type
+    size = cover.size
   }
 
-  await query('insert into `users` (`username`, `password`) values (?, ?)', [name, password])
-  return (ctx.body = '注册成功')
+  await query('insert into `attachments` (`filename`, `type`, `size`) values (?, ?, ?)', [
+    filename,
+    type,
+    size
+  ])
+
+  ctx.body = tpl.render('message.html', {
+    message: '添加成功',
+    url: '/'
+  })
 })
 
 app.use(router.routes())

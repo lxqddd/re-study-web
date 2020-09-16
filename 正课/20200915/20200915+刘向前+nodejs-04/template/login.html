@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div id="main">
+
+    <div id="login" class="panel">
+        <h2>登录</h2>
+        <form action="" method="post">
+            <div class="form-item">
+                <label>
+                    <span class="txt">姓名：</span>
+                    <input type="text" name="username" class="form-input">
+                </label>
+            </div>
+            <div class="form-item">
+                <label>
+                    <span class="txt">密码：</span>
+                    <input type="password" name="password" class="form-input">
+                </label>
+            </div>
+            <div class="form-item">
+                <label>
+                    <span class="txt"></span>
+                    <button class="form-button primary">登录</button>
+                    <a href="/register">没有账号，马上注册</a>
+                </label>
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

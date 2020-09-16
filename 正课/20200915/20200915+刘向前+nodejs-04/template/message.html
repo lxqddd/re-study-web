@@ -1,0 +1,36 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 刘向前
+ * @Date: 2020-09-16 22:32:59
+ * @LastEditors: 刘向前
+ * @LastEditTime: 2020-09-16 23:28:44
+-->
+{% extends "base.html" %} {% block main %}
+<div id="main">
+  <div class="panel">
+    <h2>提示</h2>
+    <div>
+      <h4>{{message}}</h4>
+      <p>
+        <a id="a" href="/"></a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  let aElement = document.querySelector('#a')
+  let t = 3
+
+  ;(function goto() {
+    t--
+    if (t < 0) {
+      window.location.href = '/'
+    } else {
+      aElement.innerHTML = `${t} 秒以后自动跳转，或者点击这里立即跳转`
+      setTimeout(goto, 1000)
+    }
+  })()
+</script>
+{% endblock %}

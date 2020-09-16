@@ -1,0 +1,49 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 刘向前
+ * @Date: 2020-09-16 22:32:59
+ * @LastEditors: 刘向前
+ * @LastEditTime: 2020-09-16 23:19:26
+-->
+{% extends "base.html" %} {% block main %}
+<div id="main">
+  <!--
+        application/x-www-form-urlencoded
+        multipart/form-data
+        text/plain
+    -->
+
+  <div id="login" class="panel">
+    <h2>添加新商品</h2>
+    <form action="/addItem" method="post" enctype="multipart/form-data">
+      <div class="form-item">
+        <label>
+          <span class="txt">封面：</span>
+          <button class="form-button primary" id="fileBtn">上传</button>
+          <input style="display: none" type="file" id="cover" name="cover" />
+        </label>
+      </div>
+      <div class="form-item">
+        <label>
+          <span class="txt"></span>
+          <button type="submit" class="form-button primary">确定添加</button>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  let fileBtnElement = document.querySelector('#fileBtn')
+  let coverElement = document.querySelector('#cover')
+
+  fileBtnElement.onclick = function (e) {
+    // 避免表单提交
+    e.preventDefault()
+
+    // 触发 coverElement 的点击
+    coverElement.click()
+  }
+</script>
+{% endblock %}

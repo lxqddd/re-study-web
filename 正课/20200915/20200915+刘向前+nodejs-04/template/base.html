@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/css.css" />
+</head>
+<body>
+
+<div id="app">
+    <header id="header">
+        <a href="/" id="logo"></a>
+
+        <nav id="nav">
+            <!--            <a href="">笔记本</a>-->
+            <!--            <a href="">家居</a>-->
+            <a href="/">全部</a>
+            {% for category in categories %}
+            <a href="/{{category.id}}">{{category.name}}</a>
+            {% endfor %}
+        </nav>
+
+        <div id="user">
+            {% if (user.id) %}
+            <a href="/user">{{user.username}}</a>
+            <a href="/addItem">添加新商品</a>
+            {% else %}
+            <a href="/login">登录</a>
+            <a href="/register">注册</a>
+            {% endif %}
+        </div>
+    </header>
+
+    {% block main %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>
