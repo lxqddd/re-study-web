@@ -1,38 +1,42 @@
-{% extends "base.html" %}
-
-{% block main %}
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 刘向前
+ * @Date: 2020-09-14 20:59:30
+ * @LastEditors: 刘向前
+ * @LastEditTime: 2020-09-21 23:02:05
+-->
+{% extends "base.html" %} {% block main %}
 <div id="main">
-
-    <div id="login" class="panel">
-        <h2>登录</h2>
-        <form action="">
-            <div class="form-item">
-                <label>
-                    <span class="txt">姓名：</span>
-                    <input type="text" class="form-input">
-                </label>
-            </div>
-            <div class="form-item">
-                <label>
-                    <span class="txt">密码：</span>
-                    <input type="password" class="form-input">
-                </label>
-            </div>
-            <div class="form-item">
-                <label>
-                    <span class="txt">重复密码：</span>
-                    <input type="password" class="form-input">
-                </label>
-            </div>
-            <div class="form-item">
-                <label>
-                    <span class="txt"></span>
-                    <button class="form-button primary">登录</button>
-                    <button class="form-button">注册</button>
-                </label>
-            </div>
-        </form>
-    </div>
-
+  <div id="login" class="panel">
+    <h2>登录</h2>
+    <form action="">
+      <div class="form-item">
+        <label>
+          <span class="txt">姓名：</span>
+          <input type="text" class="form-input" />
+        </label>
+      </div>
+      <div class="form-item">
+        <label>
+          <span class="txt">密码：</span>
+          <input type="password" class="form-input" />
+        </label>
+      </div>
+      <div class="form-item">
+        <label>
+          <span class="txt">重复密码：</span>
+          <input type="password" class="form-input" />
+        </label>
+      </div>
+      <div class="form-item">
+        <label>
+          <span class="txt"></span>
+          <button class="form-button primary">登录</button>
+          <button class="form-button">注册</button>
+        </label>
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}
