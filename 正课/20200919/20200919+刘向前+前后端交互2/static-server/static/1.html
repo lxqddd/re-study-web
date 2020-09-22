@@ -4,7 +4,7 @@
  * @Author: 刘向前
  * @Date: 2020-09-21 22:49:57
  * @LastEditors: 刘向前
- * @LastEditTime: 2020-09-22 01:20:01
+ * @LastEditTime: 2020-09-22 09:48:17
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -206,17 +206,13 @@
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
         xhr.send(`username=${username.value}&password=${password.value}`)
       }
-
       // 上传
       uploadBtnElement.onclick = function () {
         attachmentElement.click()
       }
-
       attachmentElement.onchange = function () {
         let xhr = new XMLHttpRequest()
-
         xhr.open('post', '/api/upload', true)
-
         let li = document.createElement('li')
         let span = document.createElement('span')
         span.innerHTML = attachmentElement.files[0].name
@@ -236,12 +232,10 @@
           div1.innerHTML = '准备上传……'
           taskBodyElement.appendChild(li)
         }
-
         xhr.upload.onprogress = function (e) {
           div1.innerHTML = '上传中……'
           div2.style.width = ((e.loaded / e.total) * 100).toFixed(2) + '%'
         }
-
         // 后端响应完成以后触发
         xhr.onload = function () {
           console.log('over')
@@ -249,7 +243,6 @@
           taskPanelElement.style.display = 'none'
           getPhotos()
         }
-
         let fd = new FormData()
         fd.append('attachment', attachmentElement.files[0])
         xhr.setRequestHeader('Authorization', localStorage.getItem('token'))
@@ -263,7 +256,7 @@
           const res = JSON.parse(xhr.response).data
           let imgs = ''
           res.forEach(imgItem => {
-            imgs += `<img src="/${imgItem.filename}" width='100px' />`
+            imgs += `<img src="/api/${imgItem.filename}" width='100px' />`
           })
           contentListElement.innerHTML = imgs
         }

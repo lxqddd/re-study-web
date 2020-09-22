@@ -4,12 +4,11 @@
  * @Author: 刘向前
  * @Date: 2020-09-21 22:49:57
  * @LastEditors: 刘向前
- * @LastEditTime: 2020-09-22 01:16:00
+ * @LastEditTime: 2020-09-22 09:33:38
  */
 const Koa = require('koa')
 const KoaStaticCache = require('koa-static-cache')
 const koaServerHttpProxy = require('koa-server-http-proxy')
-const fs = require('fs')
 
 const app = new Koa()
 

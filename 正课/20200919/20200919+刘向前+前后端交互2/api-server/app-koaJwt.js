@@ -4,12 +4,13 @@
  * @Author: 刘向前
  * @Date: 2020-09-21 22:49:57
  * @LastEditors: 刘向前
- * @LastEditTime: 2020-09-22 09:59:15
+ * @LastEditTime: 2020-09-22 09:47:15
  */
 const Koa = require('koa')
 const KoaRouter = require('@koa/router')
 const KoaBody = require('koa-body')
 const mysql = require('mysql2')
+const koaJwt = require('koa-jwt')
 const jwt = require('jsonwebtoken')
 const koaBody = require('koa-body')
 const KoaStaticCache = require('koa-static-cache')
@@ -18,7 +19,7 @@ const KoaStaticCache = require('koa-static-cache')
 const connection = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  password: 'duoduo521',
+  password: '******',
   database: 'kkb'
 })
 
@@ -36,7 +37,6 @@ function query(sql, values) {
 
 const app = new Koa()
 const router = new KoaRouter()
-
 app.use(
   KoaStaticCache({
     prefix: '/',
@@ -45,10 +45,12 @@ app.use(
     dynamic: true
   })
 )
+
 /**
- * 暗号： jwt鉴权
+ * jwt鉴权
  */
 // 登录
+app.use(koaJwt({ secret: 'kaikeba' }).unless({ path: [/^\/login/] }))
 router.post('/login', koaBody(), async ctx => {
   const { username, password } = ctx.request.body
   if (username && password) {
@@ -92,7 +94,7 @@ const uploadOptions = {
 router.post('/upload', KoaBody(uploadOptions), async ctx => {
   let userInfo = {}
   if (ctx.get('Authorization')) {
-    let token = ctx.get('Authorization')
+    const token = ctx.get('Authorization')
     let decoded = jwt.verify(token.replace('Bearer ', ''), 'kaikeba')
     userInfo = { ...decoded }
     if (!decoded) {
@@ -102,8 +104,8 @@ router.post('/upload', KoaBody(uploadOptions), async ctx => {
   }
   let { path, type, size } = ctx.request.files.attachment
   path = path.replace(/\\/g, '/')
-  let lastIndex = path.lastIndexOf('/')
-  let filename = path.substring(lastIndex + 1)
+  const lastIndex = path.lastIndexOf('/')
+  const filename = path.substring(lastIndex + 1)
   await query('insert into `photos` (`filename`, `type`, `size`, `uid`) values (?, ?, ?, ?)', [
     filename,
     type,
