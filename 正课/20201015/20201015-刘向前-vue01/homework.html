@@ -1,0 +1,47 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 刘向前
+ * @Date: 2020-10-17 09:25:43
+ * @LastEditors: 刘向前
+ * @LastEditTime: 2020-10-17 09:35:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div class="" id="app">
+      <div>count:{{count}}</div>
+      <div>double:{{double}}</div>
+      <button @click="handleClick">点我试试</button>
+    </div>
+    <script>
+      /*
+        暗号：吃面包得大虫子
+      */
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            count: 0
+          }
+        },
+        computed: {
+          double() {
+            return this.count * 2
+          }
+        },
+        methods: {
+          handleClick() {
+            this.count++
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
