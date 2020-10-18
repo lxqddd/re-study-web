@@ -1,0 +1,56 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: 刘向前
+ * @Date: 2020-10-18 19:51:06
+ * @LastEditors: 刘向前
+ * @LastEditTime: 2020-10-18 20:15:05
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue02</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <!-- 
+      暗号：潘森吃素
+     -->
+    <div id="app"><photo-item :name="imgName" :url="url" /></div>
+    <script>
+      let PhotoItem = Vue.component('photo-item', {
+        template: `<div class="photo-item">
+            <div class="img-name">{{name}}</div>
+            <img
+              :src="url"
+              alt=""
+            />
+          </div>`,
+        props: {
+          name: {
+            type: String,
+            default: '图片'
+          },
+          url: {
+            type: String,
+            default:
+              'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=641956088,2693107457&fm=26&gp=0.jpg'
+          }
+        }
+      })
+      new Vue({
+        el: '#app',
+        components: {
+          PhotoItem
+        },
+        data: {
+          imgName: '悟空',
+          url:
+            'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=641956088,2693107457&fm=26&gp=0.jpg'
+        }
+      })
+    </script>
+  </body>
+</html>
