@@ -9,7 +9,6 @@ import { Color, Mark } from './enums'
  * @LastEditTime: 2020-10-18 21:49:26
  */
 export type Deck = NormalDeck[]
-
 export type NormalDeck = {
   color: Color
   mark: Mark
