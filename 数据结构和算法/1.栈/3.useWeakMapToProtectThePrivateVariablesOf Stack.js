@@ -1,7 +1,7 @@
 /*
  * @Author       : your name
  * @Date         : 2020-11-01 21:35:33
- * @LastEditTime : 2020-11-01 21:51:35
+ * @LastEditTime : 2020-11-01 21:52:25
  * @LastEditors  : Please set LastEditors
  * @Description  : In User Settings Edit
  * @FilePath     : \re-study-web\数据结构和算法\1.栈\3.useWeakMapToProtectThePrivateVariablesOf Stack.js
@@ -74,7 +74,6 @@ class Stack {
 const stack = new Stack()
 stack.push('hello')
 stack.push('world')
-stack.push('!')
 stack.pop()
 console.log(stack.peek())
 console.log(stack.size())
