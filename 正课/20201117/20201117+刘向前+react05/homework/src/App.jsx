@@ -36,3 +36,6 @@ export default function App() {
     </div>
   )
 }
+
+// duibian bi xie bian
+对边比斜边
