@@ -1,7 +1,7 @@
 /*
  * @Author       : your name
  * @Date         : 2020-12-12 19:25:47
- * @LastEditTime : 2020-12-13 17:23:35
+ * @LastEditTime : 2020-12-13 17:25:10
  * @LastEditors  : Please set LastEditors
  * @Description  : In User Settings Edit
  * @FilePath     : /re-study-web/数据结构和算法/3.链表/linkedList.js
@@ -39,7 +39,6 @@ class LinkedList {
       this.count += 1
       return true
     }
-    return false
   }
 
   /**
