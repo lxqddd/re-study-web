@@ -1,7 +1,7 @@
 /*
  * @Author       : your name
  * @Date         : 2020-12-12 19:25:47
- * @LastEditTime : 2020-12-13 17:25:10
+ * @LastEditTime : 2020-12-14 21:06:10
  * @LastEditors  : Please set LastEditors
  * @Description  : In User Settings Edit
  * @FilePath     : /re-study-web/数据结构和算法/3.链表/linkedList.js
@@ -152,6 +152,11 @@ class LinkedList {
   // 判断当前链表是否为空
   isEmpty() {
     return this.size() === 0
+  }
+
+  // 获取链表的第一个元素
+  getHead() {
+    return this.head
   }
 
   // 返回链表包含的元素的个数
