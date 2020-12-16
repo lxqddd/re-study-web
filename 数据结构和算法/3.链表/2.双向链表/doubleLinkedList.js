@@ -1,7 +1,7 @@
 /*
  * @Author       : 夜殇
  * @Date         : 2020-12-14 21:19:25
- * @LastEditTime : 2020-12-14 21:27:06
+ * @LastEditTime : 2020-12-16 21:57:13
  * @LastEditors  : Please set LastEditors
  * @Description  : In User Settings Edit
  * @FilePath     : /re-study-web/数据结构和算法/3.链表/2.双向链表/doubleLinkedList.js
@@ -26,7 +26,7 @@ class DoubleLinkedList {
     if (node.val === null || node.val === undefined) {
       return false
     }
-    if (this.head === null) {
+    if (this.head === undefined) {
       this.head = node
       this.count += 1
       return true
@@ -37,6 +37,7 @@ class DoubleLinkedList {
         current = current.next
       }
       current.next = node
+      node.prev = current
       this.count += 1
       return true
     }
@@ -48,7 +49,28 @@ class DoubleLinkedList {
    * @param {Number} index 插入的位置
    */
   insert(nodeVal, index) {
-    // ...
+    if (index < 0 || index >= this.count || nodeVal === null || nodeVal === undefined) {
+      return false
+    }
+    const node = new Node(nodeVal)
+    if (this.count === 0 && index === 0) {
+      this.head = node
+      this.count += 1
+      return true
+    }
+    const current = this.head
+    for (let i = 1; i < this.count; i++) {
+      if (index === i) {
+        node.prev = current
+        node.next = current.next
+        current.next.prev = node
+        current.next = node
+        this.count += 1
+        return true
+      }
+      current = current.next
+    }
+    return false
   }
 
   /**
@@ -74,7 +96,26 @@ class DoubleLinkedList {
    * @param {Number} index 索引值
    */
   removeAt(index) {
-    // ...
+    if (index < 0 || index >= this.count) {
+      return false
+    }
+    const current = this.head
+    if (index === 0) {
+      this.head = this.head.next
+      this.head.prev = undefined
+      this.count -= 1
+      return current
+    }
+    for (let i = 1; i < this.count; i++) {
+      let temp = current.next
+      if (index === i) {
+        current.next = current.next.next
+        current.next.next.prev = current
+        this.count -= 1
+        return temp
+      }
+      current = current.next
+    }
   }
 
   /**
