@@ -1,0 +1,11 @@
+.camera {
+  width: 300rpx;
+  height: 300rpx;
+  margin-bottom: 20rpx;
+}
+
+.preivew {
+  width: 300rpx;
+  height: 300rpx;
+  margin-top: 20rpx;
+}
