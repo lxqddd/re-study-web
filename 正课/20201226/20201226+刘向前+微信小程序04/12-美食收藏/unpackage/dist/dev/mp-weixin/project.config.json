@@ -1,0 +1,54 @@
+{
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "minified": true,
+    "es6": true,
+    "postcss": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "",
+  "appid": "wx076dd1349cb129fc",
+  "projectname": "12-美食收藏",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "city",
+          "id": 0,
+          "pathName": "pages/city/city"
+        },
+        {
+          "name": "detail",
+          "query": "id=47",
+          "id": 1,
+          "pathName": "pages/detail/detail"
+        },
+        {
+          "name": "personal",
+          "id": 2,
+          "pathName": "pages/personal/personal"
+        },
+        {
+          "name": "collectList",
+          "id": 3,
+          "pathName": "pages/collectList/collectList"
+        }
+      ]
+    }
+  }
+}
