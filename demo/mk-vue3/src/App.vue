@@ -5,9 +5,14 @@
 <script>
 export default {
   setup() {
+    console.log('hello world')
     return {}
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+div {
+  color: red;
+}
+</style>
