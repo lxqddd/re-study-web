@@ -1,16 +1,9 @@
-/*
- * @Author       : your name
- * @Date         : 2021-02-22 21:11:14
- * @LastEditTime : 2021-02-24 21:30:51
- * @LastEditors  : Please set LastEditors
- * @Description  : In User Settings Edit
- * @FilePath     : \mk-vue3\webpack.config.js
- */
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader/dist/index')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 const config = {
   mode: 'development',
@@ -37,8 +30,17 @@ const config = {
         use: 'vue-loader'
       },
       {
-        test: /\.(css|scss)$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        test: /\.(css|less)$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8192
+          }
+        }
       }
     ]
   },
@@ -50,7 +52,19 @@ const config = {
     }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin(),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new HardSourceWebpackPlugin({
+      cacheDirectory: path.resolve(__dirname, 'node_modules/.cache/hard-source'),
+      cachePrune: {
+        // Caches younger than `maxAge` are not considered for deletion. They must
+        // be at least this (default: 2 days) old in milliseconds.
+        maxAge: 2 * 24 * 60 * 60 * 1000,
+        // All caches together must be larger than `sizeThreshold` before any
+        // caches will be deleted. Together they must be at least this
+        // (default: 50 MB) big in bytes.
+        sizeThreshold: 50 * 1024 * 1024
+      }
+    })
   ]
 }
 
