@@ -16,7 +16,23 @@ class BinarySearchTree {
     }
   }
 
-  insertNode(node, key) {}
+  insertNode(node, key) {
+    // 如果要插入的节点值小于当前节点，则作为左子树
+    if (node.key > key) {
+      if (node.left === null) {
+        node.left = new Node(key)
+      } else {
+        this.insertNode(node.left, key)
+      }
+    } else {
+      // 否则作为右子树
+      if (node.right === null) {
+        node.right = new Node(key)
+      } else {
+        this.insertNode(node.right, key)
+      }
+    }
+  }
 
   search(key) {
     // 在树中查找一个键，如果节点存在，返回true；否则，返回false
