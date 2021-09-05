@@ -9,7 +9,6 @@ tree.insert(6)
 tree.insert(5)
 tree.insert(9)
 tree.insert(10)
-tree.insert(8)
 tree.insert(12)
 tree.insert(1)
 
@@ -17,8 +16,15 @@ const print = key => {
   console.log(key)
 }
 
-tree.inOrderTraverse(print)
+// tree.inOrderTraverse(print)
 
-tree.preOrderTraverse(print)
+// tree.preOrderTraverse(print)
 
-console.dir(tree.root)
+// tree.postOrderTraverse(print)
+
+tree.remove(3)
+const searchResult = tree.search(1)
+
+// console.log(searchResult)
+
+console.log(tree.root.left)

@@ -3,6 +3,7 @@ const Node = require('./node')
 class BinarySearchTree {
   constructor() {
     this.root = null
+    this.searchResult = null
   }
 
   insert(key) {
@@ -30,10 +31,6 @@ class BinarySearchTree {
         this.#insertNode(node.right, key)
       }
     }
-  }
-
-  search(key) {
-    // 在树中查找一个键，如果节点存在，返回true；否则，返回false
   }
 
   /**
@@ -91,18 +88,105 @@ class BinarySearchTree {
    */
   postOrderTraverse(callback) {
     // 通过后序遍历所有节点
+    this.#postOrderTraverseNode(this.root, callback)
+  }
+
+  #postOrderTraverseNode(node, callback) {
+    if (node !== null) {
+      this.#postOrderTraverseNode(node.left, callback)
+      this.#postOrderTraverseNode(node.right, callback)
+      callback(node.key)
+    }
   }
 
   min() {
+    if (this.root === null) {
+      return false
+    }
     // 返回树中最小的键值
+    return this.#minNode(this.root)
+  }
+
+  #minNode(node) {
+    let current = node
+    while (current !== null && current.left !== null) {
+      current = current.left
+    }
+    return current
   }
 
   max() {
     // 返回树中最大的键值
+    if (this.root === null) {
+      return false
+    }
+    return this.#maxNode(this.root)
   }
 
-  remove() {
+  #maxNode(node) {
+    let current = node
+    while (current !== null && current.right !== null) {
+      current = current.right
+    }
+    return current
+  }
+
+  search(key) {
+    // 在树中查找一个键，如果节点存在，返回true；否则，返回false
+    return this.#searchNode(this.root, key)
+  }
+
+  #searchNode(node, key) {
+    if (node === null) {
+      return false
+    }
+
+    if (node.key === key) {
+      this.searchResult = node
+    }
+    if (node !== null && node.key > key) {
+      this.#searchNode(node.left, key)
+    } else if (node !== null && node.key <= key) {
+      this.#searchNode(node.right, key)
+    }
+    return this.searchResult
+  }
+
+  remove(key) {
     // 从树中移除某个键
+    return this.#removeNode(this.root, key)
+  }
+
+  #removeNode(node, key) {
+    if (node === null) {
+      return null
+    }
+    if (node.key > key) {
+      // 要删除的节点在左子树
+      node.left = this.#removeNode(node.left, key)
+      return node
+    } else if (node.key < key) {
+      // 要删除的节点在右子树
+      node.right = this.#removeNode(node.right, key)
+      return node
+    } else {
+      // 当前节点就是要删除的节点
+      if (!node.left && !node.right) {
+        node = null
+        return node
+      }
+      if (!node.left) {
+        node = node.right
+        return node
+      } else if (!node.right) {
+        node = node.left
+        return node
+      }
+      const aux = this.#minNode(node.right)
+      node.key = aux.key
+      node.right = this.#removeNode(node.right, aux.key)
+      return node
+    }
   }
 }
 
