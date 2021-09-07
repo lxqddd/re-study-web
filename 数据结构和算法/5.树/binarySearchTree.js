@@ -9,8 +9,10 @@ class BinarySearchTree {
   insert(key) {
     // 向树中插入一个新的键
     if (this.root === null) {
+      // 当前树上啥也没有
       this.root = new Node(key)
     } else {
+      // 已经有了根节点
       this.#insertNode(this.root, key)
     }
   }
@@ -145,9 +147,9 @@ class BinarySearchTree {
       this.searchResult = node
     }
     if (node !== null && node.key > key) {
-      this.#searchNode(node.left, key)
-    } else if (node !== null && node.key <= key) {
-      this.#searchNode(node.right, key)
+      return this.#searchNode(node.left, key)
+    } else if (node !== null && node.key < key) {
+      return this.#searchNode(node.right, key)
     }
     return this.searchResult
   }
@@ -183,7 +185,9 @@ class BinarySearchTree {
         return node
       }
       const aux = this.#minNode(node.right)
+      // 将目标节点右子树节点值最小的节点的值赋值给当前目标节点，用来继承当前目标节点的位置
       node.key = aux.key
+      // 删除目标节点右子树上最小的节点
       node.right = this.#removeNode(node.right, aux.key)
       return node
     }
