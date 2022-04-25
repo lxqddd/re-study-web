@@ -91,4 +91,38 @@ hello world
 `>
 
 
+// 函数
+// 获取参数类型
+type GetParameters<Func extends Function> =
+  Func extends (...args: infer Args) => unknown
+  ? Args : never
+type TFn = (name: string, age: number) => number
+type resGetParameters = GetParameters<TFn>
+
+// 获取返回值类型
+type GetReturnType<Func extends Function> =
+  Func extends (...args: infer Args) => infer R
+  ? R : never
+type resGetReturnType = GetReturnType<TFn>
+
+
+// 方法调用时的this指向问题
+class Dog {
+  constructor(private name = 'dog') {
+    this.name = name
+  }
+
+  sayHello(this: Dog): string {
+    return `hello ${this.name}`
+  }
+}
+
+const dog = new Dog()
+dog.sayHello()
+type GetThisParameterTypeRes<T> =
+  T extends (this: infer ThisType, ...args: Array<any>) => any
+  ? ThisType : never
+type resGetThisParameterTypeRes = GetThisParameterTypeRes<typeof dog.sayHello>
+
+
 
