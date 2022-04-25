@@ -31,11 +31,16 @@ type Union = 1 | 2 | '3'
 
 
 type MapType<T> = {
-  [Key in keyof T]: Key extends 'a' ? string : number
+  [Key in keyof T]: T[Key]
 }
 type resMap = MapType<{a: 1, b: 2}>
 
 const map: resMap = {
-  a: '1',
+  a: 1,
   b: 2
 }
+
+type PopArr<Arr extends Array<unknown>> = 
+  Arr extends [] ? [] 
+  : Arr extends [...infer Rest, unknown] ? Rest : never
+type resPopArr = PopArr<[]>
