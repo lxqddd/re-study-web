@@ -40,7 +40,55 @@ const map: resMap = {
   b: 2
 }
 
+// 剔除数组中的最后一个
 type PopArr<Arr extends Array<unknown>> = 
   Arr extends [] ? [] 
   : Arr extends [...infer Rest, unknown] ? Rest : never
 type resPopArr = PopArr<[]>
+
+
+// 剔除数组中的第一个
+type ShiftArr<Arr extends Array<unknown>> =
+  Arr extends [] ? []
+  : Arr extends [infer F, ...infer R] ? R : never
+
+type resShiftArr = ShiftArr<[1, 2, 3, 4, 5]>
+
+
+// 判断字符串是否是以某字符串开头
+type StartWidth<Str extends string, Prefix extends string> =
+  Str extends `${Prefix}${string}` ? true : false
+
+type resStartWidth = StartWidth<'#strings', '#'>
+
+
+// 替换字符串中的某一部分
+type ReplaceStr<Str extends string, From extends string, To extends string> =
+  Str extends `${infer Prefix}${From}${infer Suffix}`
+  ? `${Prefix}${To}${Suffix}` : Str
+
+type resReplaceStr = ReplaceStr<'hello world', 'lo', 'ol'>
+
+
+// 去掉字符串中的空格
+type TrimRight<Str extends string> =
+  Str extends `${infer R}${' ' | '\n' | '\t'}`
+  ? TrimRight<R> : Str
+
+type resTrimRight = TrimRight<'hello world      '>
+
+type TrimLeft<Str extends string> =
+  Str extends `${' ' | '\n' | '\t'}${infer R}`
+  ? TrimLeft<R> : Str
+
+type resTrimLeft = TrimLeft<`   
+   hello world`>
+
+type Trim<Str extends string> = TrimLeft<TrimRight<Str>>
+
+type resTrim = Trim<`   
+hello world     
+`>
+
+
+
