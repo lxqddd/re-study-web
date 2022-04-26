@@ -124,5 +124,6 @@ type GetThisParameterTypeRes<T> =
   ? ThisType : never
 type resGetThisParameterTypeRes = GetThisParameterTypeRes<typeof dog.sayHello>
 
-
+type Push<Arr extends Array<unknown>, Ele> = [...Arr, Ele ]
+type resPush = Push<[1, 2, 3], 4>
 
