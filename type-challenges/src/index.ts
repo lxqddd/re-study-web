@@ -132,3 +132,27 @@ type resPush = Push<[1, 2, 3], 4>
 type Unshift<Arr extends Array<unknown>, I> = [I, ...Arr]
 type resUnshift = Unshift<[0, 2, 3, 4, 5, 6], 0>
 
+
+
+// zip
+type tuple1 = [1, 2]
+type tuple2 = ['xiang', 'yang']
+
+type Zip<One extends [unknown, unknown], Other extends [unknown, unknown]> =
+  One extends [infer OneFirst, infer OneSecond]
+    ? Other extends [infer OtherFirst, infer OtherSecond]
+      ? [[OneFirst, OtherFirst], [OneSecond, OtherSecond]] : []
+      : []
+type resZip = Zip<tuple1, tuple2>
+
+type Zip2<One extends Array<unknown>, Other extends Array<unknown>> =
+  One extends [infer OneFirst, ...infer OneRest]
+    ? Other extends [infer OtherFirst, ...infer OtherRest ]
+      ? [[OneFirst, OtherFirst], ...Zip2<OneRest, OtherRest>] : []
+      : []
+type resZip2 = Zip2<tuple1, tuple2>
+
+
+
+
+
