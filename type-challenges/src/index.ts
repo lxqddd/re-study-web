@@ -152,6 +152,13 @@ type Zip2<One extends Array<unknown>, Other extends Array<unknown>> =
       : []
 type resZip2 = Zip2<tuple1, tuple2>
 
+// CapitalizeStr
+type CapitalizeStr<Str extends string> =
+  Str extends `${infer F}${infer R}`
+    ? `${Uppercase<F>}${R}` : Str
+type resCapitalizeStr = CapitalizeStr<'xiang'>
+
+
 
 
 
