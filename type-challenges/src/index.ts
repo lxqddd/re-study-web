@@ -159,6 +159,13 @@ type CapitalizeStr<Str extends string> =
 type resCapitalizeStr = CapitalizeStr<'xiang'>
 
 
+// CamelCase
+type CamelCase<Str extends string> =
+  Str extends `${infer L}_${infer T}${infer R}`
+    ? `${L}${Uppercase<T>}${CamelCase<R>}` : Str
+type resCamelCase = CamelCase<'liu_xiang_qian'>
+
+
 
 
 
