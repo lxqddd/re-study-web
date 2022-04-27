@@ -165,7 +165,11 @@ type CamelCase<Str extends string> =
     ? `${L}${Uppercase<T>}${CamelCase<R>}` : Str
 type resCamelCase = CamelCase<'liu_xiang_qian'>
 
-
+// DropSubStr
+type DropSubStr<Str extends string, SubStr extends string> =
+  Str extends `${infer F}${SubStr}${infer R}`
+    ? `${F}${DropSubStr<R, SubStr>}` : Str
+type resDropStr = DropSubStr<'xiang_yang_', '_'>
 
 
 
