@@ -208,6 +208,13 @@ type ToReadonly<T> = {
 type resToReadonly = ToReadonly<Obj>
   
 
+// toPartial
+type ToPartial<T> = {
+  [Key in keyof T]?: T[Key]
+}
+type resToPartial = ToPartial<Obj>
+
+
 
 
 
