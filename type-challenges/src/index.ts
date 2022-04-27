@@ -223,7 +223,12 @@ type ToMutable<T> = {
 }
 type resToMutable = ToMutable<ToReadonly<Obj>>
 
-
+// ToRequired
+type ToRequired<T> = {
+  [Key in keyof T] -?: T[Key]
+}
+type resToRequired = ToRequired<ToPartial<Obj>>
+type resToRequired2 = Required<ToPartial<Obj>>
 
 
 
