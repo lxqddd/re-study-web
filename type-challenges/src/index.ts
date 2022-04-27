@@ -172,5 +172,42 @@ type DropSubStr<Str extends string, SubStr extends string> =
 type resDropStr = DropSubStr<'xiang_yang_', '_'>
 
 
+// 函数类型重新构造
+// appendArgument
+type AppendArgument<Func extends Function, Arg> =
+  Func extends (...args: infer Args) => infer R
+    ? (...args: [...Args, Arg]) => R : never
+type FnT = (name: string, age: number) => string
+type resAppendArgument = AppendArgument<FnT, number>
+
+// Mapping
+type Obj = {
+  name: 'hello'
+  age: 12
+}
+type Mapping<Obj extends object> = {
+  [Key in keyof Obj] : Obj[Key]
+}
+
+type resMapping = Mapping<Obj>
+
+// UppercaseKey
+type UppercaseKey<Obj extends object> = {
+  [Key in keyof Obj as Uppercase<Key & string>]: Obj[Key]
+}
+type resUppercaseKey = UppercaseKey<Obj>
+type UppercaseKey2<Obj extends Record<string, any>> = {
+  [Key in keyof Obj as Uppercase<Key & string>]: Obj[Key]
+}
+type resUppercaseKey2 = UppercaseKey2<Obj>
+
+// ToReadonly
+type ToReadonly<T> = {
+  readonly [Key in keyof T]: T[Key]
+}
+type resToReadonly = ToReadonly<Obj>
+  
+
+
 
 
