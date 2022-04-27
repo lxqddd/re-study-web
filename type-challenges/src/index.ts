@@ -213,6 +213,15 @@ type ToPartial<T> = {
   [Key in keyof T]?: T[Key]
 }
 type resToPartial = ToPartial<Obj>
+// 内置的
+type resToPartial2 = Partial<Obj>
+
+
+// ToMutable
+type ToMutable<T> = {
+  -readonly [Key in keyof T]: T[Key]
+}
+type resToMutable = ToMutable<ToReadonly<Obj>>
 
 
 
