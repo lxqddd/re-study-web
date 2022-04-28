@@ -254,5 +254,11 @@ type DeepPromiseValueType<T> =
 type resDeepPromiseValueType = DeepPromiseValueType<ttt>
 
 
-
+// 数组递归
+type arr = [1, 2, 3, 4, 5]
+type RevertArr<A extends Array<unknown>> =
+  A extends [infer F, ...infer R]
+  ? [...RevertArr<R>, F]
+  : A
+type resRevertArr = RevertArr<arr>
 
