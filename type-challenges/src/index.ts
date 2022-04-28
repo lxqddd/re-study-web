@@ -272,3 +272,12 @@ type Include<Arr extends Array<unknown>, Find> =
     : false
 type resInclude = Include<arr, 9>
 
+
+// removeItem
+type RemoveItem<Arr extends Array<unknown>, Target, Result extends Array<unknown>> =
+  Arr extends [infer F, ...infer R]
+  ? IsEqual<F, Target> extends true
+    ? RemoveItem<R, Target, Result>
+    : RemoveItem<R, Target, [...Result, F]>
+  : Result
+type resRemoveItem = RemoveItem<arr, 3, []>
