@@ -314,3 +314,31 @@ type ReverseStr<Str extends string, Res extends string = ''> =
   : Res
 type resReverseStr = ReverseStr<'hello'>
 
+
+
+// 对象类型的递归
+type DeepReadonly<Obj extends Record<string, any>> =
+  Obj extends any 
+  ? {
+    readonly [Key in keyof Obj]: 
+      Obj[Key] extends object
+      ? Obj[Key] extends Function
+        ? Obj[Key]
+        : DeepReadonly<Obj[Key]>
+      : Obj[Key]
+    } 
+  : never
+type obj = {
+  a: 1,
+  b: {
+    a: 2,
+    c: {
+      a: 3
+      d: {
+        a: 4
+      }
+    }
+  }
+}
+type resDeepReadonly = DeepReadonly<obj>
+
