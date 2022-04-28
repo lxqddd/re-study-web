@@ -297,3 +297,11 @@ type ReplaceAll<Str extends string, From extends string, To extends string> =
   ? `${L}${To}${ReplaceAll<R, From, To>}`
   : Str
 type resReplaceAll = ReplaceAll<'hello world', 'l', 'L'>
+
+
+// string to union
+type StringToUnion<Str extends string> =
+  Str extends `${infer F}${infer R}`
+  ? F | StringToUnion<R>
+  : Str
+type resStringToUnion = StringToUnion<'hello world'>
