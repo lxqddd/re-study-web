@@ -288,3 +288,12 @@ type BuildArr<Length extends number, Ele = unknown, Arr extends Array<unknown> =
   Arr['length'] extends Length
   ? Arr : BuildArr<Length, Ele, [...Arr, Ele]>
 type resBuildArr = BuildArr<5, 3, []>
+
+
+// 字符串递归
+// replaceAll
+type ReplaceAll<Str extends string, From extends string, To extends string> =
+  Str extends `${infer L}${From}${infer R}`
+  ? `${L}${To}${ReplaceAll<R, From, To>}`
+  : Str
+type resReplaceAll = ReplaceAll<'hello world', 'l', 'L'>
