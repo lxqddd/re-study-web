@@ -255,7 +255,7 @@ type resDeepPromiseValueType = DeepPromiseValueType<ttt>
 
 
 // 数组递归
-type arr = [1, 2, 3, 4, 5]
+type arr = [1, 2, 3, 3, 4, 5]
 type RevertArr<A extends Array<unknown>> =
   A extends [infer F, ...infer R]
   ? [...RevertArr<R>, F]
@@ -281,3 +281,10 @@ type RemoveItem<Arr extends Array<unknown>, Target, Result extends Array<unknown
     : RemoveItem<R, Target, [...Result, F]>
   : Result
 type resRemoveItem = RemoveItem<arr, 3, []>
+
+
+// buildArr
+type BuildArr<Length extends number, Ele = unknown, Arr extends Array<unknown> = []> =
+  Arr['length'] extends Length
+  ? Arr : BuildArr<Length, Ele, [...Arr, Ele]>
+type resBuildArr = BuildArr<5, 3, []>
