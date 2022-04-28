@@ -245,4 +245,14 @@ type resFilterByValueType = FilterByValueType<{
 }, number | string>
 
 
+// 递归
+type ttt = Promise<Promise<Promise<Record<string, any>>>>
+type DeepPromiseValueType<T> =
+  T extends Promise<infer valueType>
+    ? DeepPromiseValueType<valueType>
+    : T
+type resDeepPromiseValueType = DeepPromiseValueType<ttt>
+
+
+
 
