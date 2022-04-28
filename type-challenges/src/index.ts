@@ -262,3 +262,13 @@ type RevertArr<A extends Array<unknown>> =
   : A
 type resRevertArr = RevertArr<arr>
 
+// include
+type IsEqual<A, B> = (A extends B ? true : false) & (B extends A ? true : false)
+type Include<Arr extends Array<unknown>, Find> =
+  Arr extends [infer F, ...infer R]
+    ? IsEqual<Find, F> extends true
+      ? true
+      : Include<R, Find>
+    : false
+type resInclude = Include<arr, 9>
+
