@@ -305,3 +305,12 @@ type StringToUnion<Str extends string> =
   ? F | StringToUnion<R>
   : Str
 type resStringToUnion = StringToUnion<'hello world'>
+
+
+// reverseStr
+type ReverseStr<Str extends string, Res extends string = ''> =
+  Str extends `${infer F}${infer R}`
+  ? ReverseStr<R, `${F}${Res}`>
+  : Res
+type resReverseStr = ReverseStr<'hello'>
+
