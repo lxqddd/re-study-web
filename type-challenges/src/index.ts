@@ -353,3 +353,10 @@ type Add<N1 extends number, N2 extends number> =
 type resAdd = Add<32, 33>
 
 
+// subtract
+type Subtract<N1 extends number, N2 extends number> =
+  BuildArray<N1> extends [...Arr1: BuildArray<N2>, ...Arr2: infer Rest]
+    ? Rest['length']
+    : never
+type resSubtract = Subtract<33, 12>
+
