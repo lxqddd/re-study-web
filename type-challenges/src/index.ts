@@ -366,3 +366,15 @@ type StrLen<Str extends string, CountArr extends unknown[] = []> =
     ? StrLen<R, [...CountArr, F]>
     : CountArr['length']
 type resStrLen = StrLen<'hello '>
+
+
+// GreaterThan
+type GreaterThan<N1 extends number, N2 extends number, CountArr extends unknown[] = []> =
+  N1 extends N2
+    ? false
+    : CountArr['length'] extends N2
+      ? true
+      : CountArr['length'] extends N1
+        ? false
+        : GreaterThan<N1, N2, [...CountArr, unknown]>
+type resGreaterThan = GreaterThan<25, 23>
