@@ -360,3 +360,9 @@ type Subtract<N1 extends number, N2 extends number> =
     : never
 type resSubtract = Subtract<33, 12>
 
+// StrLen
+type StrLen<Str extends string, CountArr extends unknown[] = []> =
+  Str extends `${infer F}${infer R}`
+    ? StrLen<R, [...CountArr, F]>
+    : CountArr['length']
+type resStrLen = StrLen<'hello '>
