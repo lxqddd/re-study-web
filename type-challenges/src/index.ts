@@ -342,3 +342,14 @@ type obj = {
 }
 type resDeepReadonly = DeepReadonly<obj>
 
+// 数组长度做计数
+// add
+type BuildArray<L extends number, Ele = unknown, Arr extends Array<unknown> = []> =
+  Arr['length'] extends L
+    ? Arr
+    : BuildArray<L, Ele, [...Arr, Ele]>
+type Add<N1 extends number, N2 extends number> =
+  [...BuildArray<N1>, ...BuildArray<N2>]['length']
+type resAdd = Add<32, 33>
+
+
