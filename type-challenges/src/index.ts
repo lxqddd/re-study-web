@@ -378,3 +378,4 @@ type GreaterThan<N1 extends number, N2 extends number, CountArr extends unknown[
         ? false
         : GreaterThan<N1, N2, [...CountArr, unknown]>
 type resGreaterThan = GreaterThan<25, 23>
+
