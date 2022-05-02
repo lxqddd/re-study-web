@@ -48,4 +48,4 @@ function postOrder(tree) {
   console.log(tree.value)
 }
 
-postOrder(tree)
+// postOrder(tree)
