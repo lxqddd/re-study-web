@@ -24,3 +24,29 @@ function isPalindromePlus (str) {
 
 console.log(isPalindromePlus(str))
 console.log(isPalindromePlus('hello'))
+
+
+function isPalindromePlus2(str) {
+  const len = str.length
+  let i = 0
+  let j = len - 1
+
+  while(i < j && str[i] === str[j]) {
+    i ++
+    j --
+  }
+
+  if (isPalindrome(i + 1, j) || isPalindrome(i, j - 1)) return true
+
+  function isPalindrome (st, end) {
+    while(st < end) {
+      if (str[st] !== str[end]) return false
+      st ++
+      end --
+    }
+    return true
+  }
+  return false
+}
+console.log(isPalindromePlus2(str))
+console.log(isPalindromePlus2('hello'))
